@@ -1,0 +1,82 @@
+/************ Tags ************/
+body {
+	background-image: url('../images/power-map.svg');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	padding:0;
+	margin:0;
+	font-family: Helvetica, Verdana, Geneva, sans-serif
+}
+
+header {
+	padding-top:10px;
+	padding-left: 20px;
+	height:50px;
+	display:block;
+	background:white;
+	-webkit-box-shadow:0px 2px 5px gray;
+	-moz-box-shadow:0px 2px 5px gray;
+	box-shadow:0px 2px 5px gray;
+}
+
+
+h1 {
+	display:inline;
+	color:#F05A62;
+	padding:15px 10px 0px 0px;
+	font-size:210%;
+	text-transform:capitalize;
+}
+
+input[type="image"] {
+	float:right;
+	margin:5px 10px 0 0;
+}
+
+input[type="image"]:hover {
+	width: 50px;
+	cursor:pointer;
+}
+/************ Classes ************/
+
+/* button "delete" */
+.delete {
+	cursor:pointer;
+	font-size:120%;
+}
+
+
+.postick {
+	border:1px solid gray;
+	width:100px;
+	height:100px;
+	padding:4px;
+	font-size:85%;
+	background:#FFFC7F;
+	-moz-box-shadow:2px 2px 2px #999999;
+	-webkit-box-shadow:2px 2px 2px #999999;
+	box-shadow:2px 2px 2px #999999;
+	position:absolute;
+}
+
+.toolbar {
+	text-align:right;
+	font-weight:bold;
+}
+
+/* Content to be editable inside */
+
+.editable {
+	cursor:pointer;
+	height:80px;
+	marging:0 auto;
+	width:100%;
+	overflow:hidden;
+	position:relative;
+	-moz-text-shadow: 1px 1px 0px white;
+	text-shadow: 1px 1px 0px white;
+}
+
+.editable:hover {
+	border:1px dotted gray;
+}
