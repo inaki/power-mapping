@@ -39,7 +39,7 @@ input[type="image"]:hover {
 }
 /************ Classes ************/
 
-/* Postick's button "delete" */
+/* button "delete" */
 .delete {
 	cursor:pointer;
 	font-size:120%;
@@ -64,7 +64,7 @@ input[type="image"]:hover {
 	font-weight:bold;
 }
 
-/* Content to be editable inside the postick */
+/* Content to be editable inside */
 
 .editable {
 	cursor:pointer;
