@@ -1,20 +1,20 @@
 (function ($, $S) {
     // $jQuery
     // $S window.localStorage
-    // Déclaration des variables
+    // variables
     var $board = $('#board'),
-        // Placement des Post-It
-        Postick, //Object Singleton contenant les fonctions pour travailler sur le LocalStorage
+        // Placement of post-its
+        Postick, //contains the functions to work on the LocalStorage
         len = 0,
-        // Nombre d'objets dans le LocalStorage
+        // name of objects LocalStorage
         currentNotes = '',
-        // Stockage du code HTML de l'élément Post-It
-        o; // Données actuelles du Post-It dans le localStorage
+        // Storage HTML element the Post-It
+        o; // Current data of Post-It in the localStorage
 
 
 
-    // Gérer les Post-It dans le LocalStorage
-	  // Chaque objet est enregistré dans le localStorage comme un Object
+    // Manage Post-It in the LocalStorage
+	  // Each object is stored in the localStorage as an Object
     Postick = {
         add: function (obj) {
             obj.id = $S.length;
@@ -35,28 +35,28 @@
 
     };
 
-    // S'il existe des Post-It on les créer
+    //If there are Post-It on creating
     len = $S.length;
     if (len) {
         for (var i = 0; i < len; i++) {
-            // Création de tous les Post-It se trouvant dans le localStorage
+            // Create all Post-It located in the localStorage
             var key = $S.key(i);
             o = Postick.retrive(key);
             currentNotes += '<div class="postick"';
             currentNotes += ' style="left:' + o.left;
             currentNotes += 'px; top:' + o.top;
-						// L'attribut data-key permet de savoir quelle note on va supprimer dans le localStorage
+						// The data- key attribute lets you know which note we will remove the localStorage
             currentNotes += 'px"><div class="toolbar"><span class="delete" data-key="' + key;
             currentNotes += '">x</span></div><div contenteditable="true" class="editable">';
             currentNotes += o.text;
             currentNotes += '</div></div>';
         }
 
-        // Ajoute tous les Post-It sur le tableau de bord
+        // Adds all Post-It on the dashboard
         $board.html(currentNotes);
     }
 
-    // Dès que le document est chargé, on rend tous les Post-It Draggable
+    // Once the document is loaded , it makes all the Post-It Draggable
     $(document).ready(function () {
         $(".postick").draggable({
             cancel: '.editable',
@@ -65,11 +65,11 @@
         });
     });
 
-    // Suppression du Post-It
+    // Delete the Post-It
     $('span.delete').live('click', function () {
         if (confirm('Do you want to delete this note ?')) {
             var $this = $(this);
-					  // L'attribut data-key permet de savoir quelle note on va supprimer dans le localStorage
+					  // The data- key attribute lets you know which note we will remove the localStorage
             Postick.remove($this.attr('data-key'));
             $this.closest('.postick').fadeOut('slow', function () {
                 $(this).remove();
@@ -77,7 +77,7 @@
         }
     });
 
-    // Création du Post-It
+    // Creates the Post-It
     $('#btn-addNote').click(function () {
         $board.append('<div class="postick" style="left:20px;top:70px"><div class="toolbar"><span class="delete" title="Fermer">x</span></div><div contenteditable class="editable"></div></div>');
         $(".postick").draggable({
@@ -85,12 +85,12 @@
         });
     });
 
-    // Sauvegarde tous les Post-It lorsque l'utilisateur quitte la page
+    // Backup all Post-It when the user leaves the page
     window.onbeforeunload = function () {
-        // Nettoyage du localStorage
+        // Cleaning the localStorage
         Postick.removeAll();
-        // Puis on insère chaque Post-It dans le LocalStorage
-				// Sauvegarde la position du Post-It, afin de le replacer lorsque la page est chargée à nouveau
+        // Then inserts each Post-It in the LocalStorage
+				// Safeguard the position of Post-It to replace it when the page is loaded again
         $('.postick').each(function () {
             var $this = $(this);
             Postick.add({
